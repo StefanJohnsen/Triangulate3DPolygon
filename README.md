@@ -2,8 +2,17 @@
 
 Triangulate3DPolygon is a header-only file offering a template-based solution for triangulating three-dimensional, non-complex polygons. This solution is self-contained, requiring no external libraries except for the inclusion of `<vector>`.
 
-## Polygon Complexity
-This routine/algorithm does not support complex polygons, i.e., polygons that self-intersect. However, the solution works for both **convex** and **concave** polygons. The routine does not produce new vertices to triangulate the polygon.
+### Compatibility and Dependencies
+- C++ 11 Standard and above
+- Standard Template Library (STL)
+
+### Supported polygons
+The solution works for all kinds of 3D non-complex polygons, concave or convex, open or closed. The routine does not produce new vertices to triangulate the polygon.
+
+### OS Support
+- Windows
+- Linux
+- macOS
 
 ## Solution Overview
 The solution uses two techniques for triangulation:
@@ -12,6 +21,9 @@ The solution uses two techniques for triangulation:
 
 **Concave Polygons:** Earcut triangulation algorithm is employed for concave polygons. This method effectively identifies and cuts triangles from the inward-curving parts of the polygon, resulting in a triangulated mesh. Additionally, the earcut algorithm includes an extended solution called `getOverlappingEar` to handle cases where one earcut overlaps another triangle.
 <br><br>
+
+### Usage
+Copy `TriangulatePolygon.h` to your project and include the file.
 
 ### Example with embedded struct for Point and Triangle
 ```cpp
