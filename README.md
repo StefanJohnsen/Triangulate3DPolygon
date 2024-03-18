@@ -45,7 +45,7 @@ int main()
 <br>
   
 ## References
-The following sources have been utilized in the development of this Wavefront MTL parser.
+The following sources have been utilized in the development of this solution.
 
 [Paul Bourke: The shortest line between two lines in 3D](https://paulbourke.net/geometry/pointlineplane/)
 
