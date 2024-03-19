@@ -14,14 +14,14 @@ The solution works for all kinds of 3D non-complex polygons, concave or convex, 
 - Linux
 - macOS
 
-## Solution Overview
+## Solution
 The solution uses two techniques for triangulation:
 
 **Convex Polygons:** Fan triangulation method is utilized for convex polygons, efficiently dividing the polygon into triangles originating from a central point.
 
 **Concave Polygons:** Earcut triangulation algorithm is used for concave polygons. This method identifies and cuts triangles from the inward-curving parts of the polygon, resulting in a triangulated mesh. 
 
-### Usage
+## Usage
 Copy `TriangulatePolygon.h` to your project and include the file.
 
 ```cpp
