@@ -16,6 +16,7 @@
 #define TRIANGULATE_POLYGON
 
 #include <vector>
+#include <cmath>
 
 namespace triangulate
 {
