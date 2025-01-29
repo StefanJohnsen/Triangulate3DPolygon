@@ -65,12 +65,12 @@ namespace triangulate
 
 	inline double magnitude(const double& x, const double& y, const double& z)
 	{
-		return sqrt(x * x + y * y + z * z);
+		return std::sqrt(x * x + y * y + z * z);
 	}
 
 	inline float magnitude(const float& x, const float& y, const float& z)
 	{
-		return sqrt(x * x + y * y + z * z);
+		return std::sqrt(x * x + y * y + z * z);
 	}
 
 	template <typename T = Point>
@@ -100,7 +100,7 @@ namespace triangulate
 	{
 		T u = subtract(p, q);
 
-		return sqrt(magnitude(u));
+		return std::sqrt(magnitude(u));
 	}
 
 	template <typename T = Point>
