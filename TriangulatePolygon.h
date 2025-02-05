@@ -378,7 +378,7 @@ namespace triangulate
 
 		int maxIndex(-1);
 
-		double maxArea(DBL_MIN);
+		double maxArea(std::numeric_limits<double>::min());
 
 		for( size_t index = 0; index < n; index++ )
 		{
