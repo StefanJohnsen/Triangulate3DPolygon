@@ -309,24 +309,16 @@ namespace triangulate
 	template <typename T = Point>
 	void removeConsecutiveEqualItems(std::vector<T>& polygon)
 	{
-		const auto n = sizePolygon(polygon);
+		if (sizePolygon(polygon) < 2) return;
 
-		const auto copy(std::move(polygon));
-
-		polygon.clear();
-
-		for( size_t index = 0; index < n; index++ )
-		{
-			const auto& item = copy[index % n];
-			const auto& next = copy[(index + 1) % n];
-
-			if( equal(item, next) ) continue;
-
-			polygon.emplace_back(item);
-		}
+	        auto new_end = std::unique(polygon.begin(), polygon.end(), [](const T& a, const T& b) {
+	            return equal(a, b);
+	            });
+	
+	        polygon.erase(new_end, polygon.end());
 	}
 
-	//-------------------------------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------
 
 	template <typename T = Point>
 	bool isEar(const size_t index, const std::vector<T>& polygon, const T& normal)
