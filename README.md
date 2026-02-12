@@ -1,4 +1,3 @@
-![Banner](banner.jpg)
 # Triangulate 3D polygon
 
 Triangulate3DPolygon is a header-only file offering a template-based solution for triangulating three-dimensional, non-complex polygons. This solution is self-contained, requiring no external libraries except for the inclusion of `<vector>` and `<cmath>`.
