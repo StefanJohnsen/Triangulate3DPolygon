@@ -17,6 +17,7 @@
 
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 namespace triangulate
 {
