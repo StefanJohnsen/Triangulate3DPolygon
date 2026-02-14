@@ -64,6 +64,8 @@ Triangles 2
 
 To demonstrate triangulation on a more challenging polygon, this repo includes a Wavefront OBJ file:
 - falcon.obj — contains a single face/polygon representing a falcon silhouette
+<img width="360" height="376" alt="image" src="https://github.com/user-attachments/assets/f3369d9d-010f-4122-a1b1-77eadb54c302" />
+
 
 Download/copy falcon.obj to a location on your machine (e.g. C:\temp\falcon.obj) and run the examples below.
 
@@ -174,6 +176,9 @@ Polygon with 88 points.
 Polygon triangulated into 86 triangles.
 ```
 <br>
+
+## Resulting Triangulation
+<img width="426" height="426" alt="image" src="https://github.com/user-attachments/assets/85690a19-f115-42e7-8320-f274956f7c8a" />
   
 ## References
 The following sources have been utilized in the development of this solution.
