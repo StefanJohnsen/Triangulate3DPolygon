@@ -50,7 +50,7 @@ int main()
     polygon.emplace_back(2.0f, 2.0f, 0.0f);
     polygon.emplace_back(0.0f, 2.0f, 0.0f);
     
-    const auto triangles = triangulate::triangulate(polygon);
+    const auto triangles = triangulate(polygon);
 
     std::cout << "Triangles " << triangles.size() << std::endl;
 }
@@ -97,7 +97,7 @@ int main()
 
 	std::cout << "Polygon with " << polygon.size() << " points." << std::endl;
 
-	const std::vector<Triangle<Point>> triangles = triangulate::triangulate(polygon);
+	const std::vector<Triangle<Point>> triangles = triangulate(polygon);
 
 	std::cout << "Polygon triangulated into " << triangles.size() << " triangles." << std::endl;
 
@@ -162,7 +162,7 @@ int main()
 
 	std::cout << "Polygon with " << polygon.size() << " points." << std::endl;
 
-	const std::vector<Triangle<TestPoint>> triangles = triangulate::triangulate(polygon);
+	const std::vector<Triangle<TestPoint>> triangles = triangulate(polygon);
 
 	std::cout << "Polygon triangulated into " << triangles.size() << " triangles." << std::endl;
 
