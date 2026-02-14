@@ -23,7 +23,19 @@ The solution uses two techniques for triangulation:
 **Concave Polygons:** Earcut triangulation algorithm is used for concave polygons. This method identifies and cuts triangles from the inward-curving parts of the polygon, resulting in a triangulated mesh. 
 
 ## Usage
-Copy `TriangulatePolygon.h` to your project and include the file.
+
+`TriangulatePolygon.h` is a single-header utility.
+
+1. Copy `TriangulatePolygon.h` into your project
+2. Include it where needed
+
+```cpp
+#include "TriangulatePolygon.h"
+```
+
+### Minimal example (quad)
+
+A simple example that triangulates a 4-point polygon (a square):
 
 ```cpp
 #include <iostream>
@@ -42,6 +54,124 @@ int main()
 
     std::cout << "Triangles " << triangles.size() << std::endl;
 }
+```
+Output:
+```cpp
+Triangles 2
+```
+
+## Practical example (larger concave polygon)
+
+To demonstrate triangulation on a more challenging polygon, this repo includes a Wavefront OBJ file:
+- falcon.obj — contains a single face/polygon representing a falcon silhouette
+
+Download/copy falcon.obj to a location on your machine (e.g. C:\temp\falcon.obj) and run the examples below.
+
+Loading the polygon from OBJ
+The examples below use the WavefrontOBJ loader to read the polygon from falcon.obj.
+
+- Dependency (separate repo): WavefrontOBJ
+https://github.com/StefanJohnsen/WavefrontOBJ
+
+Note: obj::loadPolygons(...) loads one or more polygons/faces into polygons.
+
+```cpp
+#include <iostream>
+#include "WavefrontOBJ.h"
+#include "TriangulatePolygon.h"
+
+static std::string file = R"(C:\temp\falcon.obj)";
+
+using namespace triangulate;
+
+int main()
+{
+	std::vector<std::vector<Point>> polygons;
+
+	if (obj::loadPolygons(file, polygons) == 0)
+		return 1;
+
+	const auto polygon = polygons[0];
+
+	std::cout << "Polygon with " << polygon.size() << " points." << std::endl;
+
+	const std::vector<Triangle<Point>> triangles = triangulate::triangulate(polygon);
+
+	std::cout << "Polygon triangulated into " << triangles.size() << " triangles." << std::endl;
+
+	return 0;
+}
+```
+Output:
+```bash
+Polygon with 88 points.
+Polygon triangulated into 86 triangles.
+```
+
+### Example B: Using your own point type (external struct/class)
+
+You can triangulate polygons using your own point type T (struct/class).
+Requirements:
+
+- T must be constructible as: T(x, y, z)
+- x, y, z can be float or double (match what you load / store)
+
+Here is a minimal example point type:
+
+```C++
+struct TestPoint
+{
+	TestPoint() : x(0.f), y(0.f), z(0.f) {}
+	TestPoint(const float& x, const float& y, const float& z) : x(x), y(y), z(z) {}
+	float x;
+	float y;
+	float z;
+};
+```
+
+Full example:
+
+```C++
+#include <iostream>
+#include "WavefrontOBJ.h"
+#include "TriangulatePolygon.h"
+
+static std::string file = R"(C:\temp\falcon.obj)";
+
+using namespace triangulate;
+
+struct TestPoint
+{
+	TestPoint() : x(0.f), y(0.f), z(0.f) {}
+	TestPoint(const float& x, const float& y, const float& z) : x(x), y(y), z(z) {}
+	float x;
+	float y;
+	float z;
+};
+
+int main()
+{
+	std::vector<std::vector<TestPoint>> polygons;
+
+	if (obj::loadPolygons(file, polygons) == 0)
+		return 1;
+
+	const auto polygon = polygons[0];
+
+	std::cout << "Polygon with " << polygon.size() << " points." << std::endl;
+
+	const std::vector<Triangle<TestPoint>> triangles = triangulate::triangulate(polygon);
+
+	std::cout << "Polygon triangulated into " << triangles.size() << " triangles." << std::endl;
+
+	return 0;
+}
+
+```
+Output:
+```bash
+Polygon with 88 points.
+Polygon triangulated into 86 triangles.
 ```
 <br>
   
