@@ -63,9 +63,9 @@ namespace triangulate
 		return equal(f, 0);
 	}
 
-	inline double magnitude(const double& x, const double& y, const double& z)
+	inline float magnitude(const double& x, const double& y, const double& z)
 	{
-		return std::sqrt(x * x + y * y + z * z);
+		return static_cast<float>(std::sqrt(x * x + y * y + z * z));
 	}
 
 	inline float magnitude(const float& x, const float& y, const float& z)
